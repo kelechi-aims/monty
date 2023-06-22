@@ -93,3 +93,31 @@ void rotl(stack_t **stack, unsigned int line_number)
 	}
 	current->n = temp;
 }
+
+/**
+ * rotr - Rotates the stack to the bottom
+ * @stack: Double pointer to the stack
+ * @line_number: Line number of the opcode
+ */
+void rotr(stack_t **stack, unsigned int line_number)
+{
+	stack_t *current = *stack;
+	int temp;
+
+	(void)line_number;
+	if (current == NULL || current->next == NULL)
+	{
+		return;
+	}
+	while (current->next != NULL)
+	{
+		current = current->next;
+	}
+	temp = current->n;
+	while (current->prev != NULL)
+	{
+		current->n = current->prev->n;
+		current = current->prev;
+	}
+	current->n = temp;
+}
