@@ -23,9 +23,9 @@
  */
 typedef struct stack_s
 {
-        int n;
-        struct stack_s *prev;
-        struct stack_s *next;
+	int n;
+	struct stack_s *prev;
+	struct stack_s *next;
 } stack_t;
 
 /**
@@ -38,8 +38,8 @@ typedef struct stack_s
  */
 typedef struct instruction_s
 {
-        char *opcode;
-        void (*f)(stack_t **stack, unsigned int line_number);
+	char *opcode;
+	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
 /**
@@ -62,9 +62,10 @@ typedef struct global_vars
 	char *buff;
 	stack_t *head;
 	FILE *fd;
-}global_v;
+} global_v;
 
 extern global_v glo;
+
 /* Function prototypes which are the opcode instructions */
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
@@ -74,6 +75,8 @@ void (*opcode_funs(char *op_code))(stack_t **stack, unsigned int line_number);
 
 /* monty.c*/
 void free_glo(void);
+void glo_init(FILE *fd);
+FILE *file_check(int ac, char *av[]);
 
 /* linked_list.c */
 stack_t *add_dnodeint(stack_t **head, const int n);

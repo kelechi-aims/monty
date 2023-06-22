@@ -9,6 +9,7 @@
 void push(stack_t **stack, unsigned int line_number)
 {
 	int value, i;
+
 	if (!glo.args)
 	{
 		fprintf(stderr, "L%u ", line_number);

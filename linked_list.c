@@ -19,8 +19,8 @@ stack_t *add_dnodeint(stack_t **head, const int n)
 	if (newnode == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
-                free_glo();
-                exit(EXIT_FAILURE);
+		free_glo();
+		exit(EXIT_FAILURE);
 	}
 	newnode->n = n;
 	if (*head == NULL)

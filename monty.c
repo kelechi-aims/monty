@@ -1,7 +1,7 @@
 #include "monty.h"
+#include <stdio.h>
 
 global_v glo;
-
 /**
  * free_glo - frees the memory alloc for global variables
  * Return: Nothing
@@ -21,11 +21,11 @@ void free_glo(void)
 void glo_init(FILE *fd)
 {
 	glo.fifo = 1;
-        glo.curr = 1;
-        glo.args = NULL;
-        glo.buff = NULL;
-        glo.head = NULL;
-        glo.fd = fd;
+	glo.curr = 1;
+	glo.args = NULL;
+	glo.buff = NULL;
+	glo.head = NULL;
+	glo.fd = fd;
 }
 
 /**
@@ -52,6 +52,9 @@ FILE *file_check(int ac, char *av[])
 	return (fd);
 }
 
+ssize_t getline(char **lineptr, size_t *n, FILE *stream);
+
+
 /**
  * main - Entry point of the Monty bytecode interpreter
  * @argc: Number of command-line arguments
@@ -63,14 +66,14 @@ int main(int ac, char *av[])
 {
 	FILE *fd;
 	void (*f)(stack_t **stack, unsigned int line_number);
-	size_t n = 1024;
-	ssize_t lines = 0;
+	size_t n = 500;
+	ssize_t command = 0;
 	char *token[2] = {NULL, NULL};
 
 	fd = file_check(ac, av);
 	glo_init(fd);
-	lines = getline(&glo.buff, &n, fd);
-	while (lines != -1)
+	command = getline(&glo.buff, &n, fd);
+	while (command != -1)
 	{
 		token[0] = strtok(glo.buff, " \t\n");
 		if (token[0] && token[0][0] != '#')
@@ -86,7 +89,7 @@ int main(int ac, char *av[])
 			glo.args = strtok(NULL, " \t\n");
 			f(&glo.head, glo.curr);
 		}
-		lines = getline(&glo.buff, &n, fd);
+		command = getline(&glo.buff, &n, fd);
 		glo.curr++;
 	}
 	free_glo();
