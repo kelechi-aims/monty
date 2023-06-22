@@ -23,6 +23,8 @@ void (*opcode_funs(char *op_code))(stack_t **stack, unsigned int line_number)
 		{"pstr", pstr},
 		{"rotl", rotl},
 		{"rotr", rotr},
+		{"stack", stack},
+		{"queue", queue},
 		{NULL, NULL}
 	};
 	int i;
@@ -33,4 +35,32 @@ void (*opcode_funs(char *op_code))(stack_t **stack, unsigned int line_number)
 			break;
 	}
 	return (instructions[i].f);
+}
+
+/**
+ * stack - Sets the format of the data to a stack (LIFO)
+ * @stack: Double pointer to the stack
+ * @line_number: Line number of the opcode
+ */
+void stack(stack_t **stack, unsigned int line_number)
+{
+	(void)stack;
+	(void)line_number;
+
+	glo.fifo = 1; /* Set FIFO flag to 1 for LIFO behavior */
+
+}
+
+/**
+ * queue - Sets the format of the data to a stack (FIFO)
+ * @stack: Double pointer to the stack
+ * @line_number: Line number of the opcode
+ */
+void queue(stack_t **stack, unsigned int line_number)
+{
+	(void)stack;
+	(void)line_number;
+
+	glo.fifo = 0; /* Set FIFO flag to 0 for FIFO behavior */
+
 }

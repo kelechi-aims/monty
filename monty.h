@@ -68,6 +68,8 @@ extern global_v glo;
 
 /* opcode_file.c */
 void (*opcode_funs(char *op_code))(stack_t **stack, unsigned int line_number);
+void stack(stack_t **stack, unsigned int line_number);
+void queue(stack_t **stack, unsigned int line_number);
 
 /* opcode_file2.c */
 void push(stack_t **stack, unsigned int line_number);
