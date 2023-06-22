@@ -69,6 +69,7 @@ extern global_v glo;
 /* Function prototypes which are the opcode instructions */
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
+void pint(stack_t **stack, unsigned int line_number);
 
 /* opcode_file.c */
 void (*opcode_funs(char *op_code))(stack_t **stack, unsigned int line_number);

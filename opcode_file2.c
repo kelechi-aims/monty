@@ -2,8 +2,8 @@
 
 /**
  * push - pushes an element to the stack.
- * @stack: points to the stack
- * @line_number: current line number
+ * @stack: double pointer to the stack
+ * @line_number: Line number of the opcode
  * Return: Nothing
  */
 void push(stack_t **stack, unsigned int line_number)
@@ -41,7 +41,7 @@ void push(stack_t **stack, unsigned int line_number)
 /**
  * pall - Prints all the values on the stack
  * @stack: Pointer to the stack
- * @line_number: Current line number
+ * @line_number: Line number of the opcode
  * Return: void
  */
 void pall(stack_t **stack, unsigned int line_number)
@@ -55,4 +55,22 @@ void pall(stack_t **stack, unsigned int line_number)
 		printf("%d\n", current->n);
 		current = current->next;
 	}
+}
+
+/**
+ * pint - Prints the value at the top of the stack
+ * @stack: Double pointer to the stack
+ * @line_number: Line number of the opcode
+ */
+void pint(stack_t **stack, unsigned int line_number)
+{
+	/*(void)line_number; */
+	
+	if (stack == NULL || *stack == NULL)
+	{
+		fprintf(stderr, "L%u: can't pint, stack empty\n", line_number);
+		free_glo();
+		exit(EXIT_FAILURE);
+	}
+	printf("%d\n", (*stack)->n);
 }
