@@ -52,3 +52,31 @@ void sub(stack_t **stack, unsigned int line_number)
 	pop(stack, line_number);
 	(*stack)->n = sub_result;
 }
+
+/**
+ * div_op - Divides the second top element of the stack by the top element
+ * @stack: Double pointer to the stack
+ * @line_number: Line number of the opcode
+ */
+void div_op(stack_t **stack, unsigned int line_number)
+{
+	int div_result;
+
+	if (*stack == NULL || (*stack)->next == NULL)
+	{
+		fprintf(stderr, "L%u: ", line_number);
+		fprintf(stderr, "can't div, stack too short\n");
+		free_glo();
+		exit(EXIT_FAILURE);
+	}
+	if ((*stack)->n == 0)
+	{
+		fprintf(stderr, "L%u: division by zero\n", line_number);
+		free_glo();
+		exit(EXIT_FAILURE);
+	}
+	div_result = (*stack)->next->n / (*stack)->n;
+	pop(stack, line_number);
+	(*stack)->n = div_result;
+}
+
