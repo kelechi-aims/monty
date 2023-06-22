@@ -14,6 +14,7 @@ void (*opcode_funs(char *op_code))(stack_t **stack, unsigned int line_number)
 		{"pop", pop},
 		{"swap", swap},
 		{"add", add},
+		{"nop", nop},
 		{NULL, NULL}
 	};
 	int i;
