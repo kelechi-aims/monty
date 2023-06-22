@@ -1,6 +1,15 @@
 #ifndef MONTY_H
 #define MONTY_H
 
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <ctype.h>
+
 /* Structures */
 
 /**
@@ -33,6 +42,43 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-/* Function prototypes */
+/**
+ * strcut global_vars - global structure containing variables
+ * @fifo: either stack or queue
+ * @curr: this is the current line
+ * @args: pointer to the second parameter in the current line
+ * @buff: points to the inputed text
+ * @head: points to head of the doubly linked list
+ * @fd: points to the file descriptor
+ *
+ * Description: doubly linked list node structure
+ * for stack, queues, LIFO, FIFO
+ */
+typedef struct global_vars
+{
+	int fifo;
+	unsigned int curr;
+	char *args;
+	char *buff;
+	stack_t *head;
+	FILE *fd;
+}global_v;
+
+extern global_v glo;
+/* Function prototypes which are the opcode instructions */
+void push(stack_t **stack, unsigned int line_number);
+void pall(stack_t **stack, unsigned int line_number);
+
+/* opcode_file.c */
+void (*opcode_funs(char *op_code))(stack_t **stack, unsigned int line_number);
+
+/* monty.c*/
+void free_glo(void);
+
+/* linked_list.c */
+stack_t *add_dnodeint(stack_t **head, const int n);
+stack_t *add_dnodeint_end(stack_t **head, const int n);
+void free_dlistint(stack_t *head);
+
 
 #endif
