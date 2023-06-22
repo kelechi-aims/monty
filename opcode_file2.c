@@ -12,8 +12,8 @@ void push(stack_t **stack, unsigned int line_number)
 
 	if (!glo.args)
 	{
-		fprintf(stderr, "L%u ", line_number);
-		fprintf(stderr, "Usage: push integer\n");
+		fprintf(stderr, "L%u: ", line_number);
+		fprintf(stderr, "usage: push integer\n");
 		free_glo();
 		exit(EXIT_FAILURE);
 	}
@@ -21,8 +21,8 @@ void push(stack_t **stack, unsigned int line_number)
 	{
 		if (!isdigit(glo.args[i]) && glo.args[i] != '-')
 		{
-			fprintf(stderr, "L%u ", line_number);
-			fprintf(stderr, "Usage: push integer\n");
+			fprintf(stderr, "L%u: ", line_number);
+			fprintf(stderr, "usage: push integer\n");
 			free_glo();
 			exit(EXIT_FAILURE);
 		}
