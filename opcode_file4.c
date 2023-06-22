@@ -27,3 +27,26 @@ void mod(stack_t **stack, unsigned int line_number)
 	pop(stack, line_number);
 	(*stack)->n = mod_result;
 }
+
+/**
+ * pchar - Prints the char at the top of the stack
+ * @stack: Double pointer to the stack
+ * @line_number: Line number of the opcode
+ */
+void pchar(stack_t **stack, unsigned int line_number)
+{
+	if (*stack == NULL || *stack == NULL)
+	{
+		fprintf(stderr, "L%u: can't pchar, stack empty", line_number);
+		free_glo();
+		exit(EXIT_FAILURE);
+	}
+	if ((*stack)->n < 0 || (*stack)->n > 127)
+	{
+		fprintf(stderr, "L%u: ", line_number);
+		fprintf(stderr, "can't pchar, value out of range\n");
+		free_glo();
+		exit(EXIT_FAILURE);
+	}
+	printf("%c\n", (*stack)->n);
+}
